@@ -1,12 +1,14 @@
 
 var express = require('express'),
-path = require('path'),
-app = express(),
-port = 4444,
-bodyParser = require('body-parser');
+    path = require('path'),
+    app = express(),
+    port = 4444,
+    bodyParser = require('body-parser');
 
 // Make sure to include the JSX transpiler
-require('node-jsx').install();
+require('babel-core/register')({
+    presets: ['es2015', 'react']
+});
 
 // Include static assets. Not advised for production
 app.use(express.static(path.join(__dirname, 'view')));
@@ -16,7 +18,7 @@ app.set('views', path.join(__dirname, 'view'));
 app.set('view engine', 'ejs');
 
 // Set up Routes for the application
-require('./app/routes/routes.js')(app);
+require('./app/routes-server/routes.js')(app);
 
 //Route not found -- Set 404
 app.get('*', function(req, res) {

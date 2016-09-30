@@ -1,34 +1,19 @@
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
 
-var Main = React.createClass({
+export default class Main extends React.Component {
 
-  saludar: function() {
+  saludar() {
     alert("Hola !!!");
-  },
+  }
 
-  render: function() {
-
-    var data = this.props.data || [];
-
-    var elements = data.map(function(element, index) {
-      return (
-        <div key={index}>
-          <div>{element.name}</div>
-          <div>{element.age}</div>
-        </div>
-      );
-    })
-
+  render() {
     return (
       <div>
         <h1>Hello World !!!</h1>
         <input type="button" value="Saludar" onClick={this.saludar} />
-        {elements}
       </div>
     );
   }
-});
 
-module.exports = Main;
+}
