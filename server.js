@@ -27,5 +27,5 @@ app.get('*', function(req, res) {
     });
 });
 
-app.listen(port);
+app.listen(port, '192.168.0.187');
 console.log('Server is Up and Running at Port : ' + port);

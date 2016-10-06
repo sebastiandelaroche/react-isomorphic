@@ -1,7 +1,6 @@
 
 import React from 'react';
 import render from 'react-dom/server';
-import Main from '../component/main';
 // import { Router, createMemoryHistory } from 'react-router';
 import { match, RouterContext } from 'react-router';
 import routes from '../routes-client/routes';
@@ -19,24 +18,24 @@ module.exports = function(app) {
 	    } else if (redirectLocation) {
 	      res.redirect(302, redirectLocation.pathname + redirectLocation.search)
 	    } else if (renderProps) {
-	      // You can also check renderProps.components or renderProps.routes for
+
+				// You can also check renderProps.components or renderProps.routes for
 	      // your "not found" component or route respectively, and send a 404 as
 	      // below, if you're using a catch-all route.
-
 				const renderToStringHTML = render.renderToString(<RouterContext {...renderProps} />);
 				const html = `<!doctype html>
-				<html>
-				  <head>
-				    <meta charset="UTF-8">
-				    <title>Hello React</title>
-				  </head>
-				  <body>
-				    <div id="app">
-				      ${renderToStringHTML}
-				    </div>
-				    <script src="./bundle.js"></script>
-				  </body>
-				</html>`;
+												<html>
+												  <head>
+												    <meta charset="UTF-8">
+												    <title>Hello React</title>
+												  </head>
+												  <body>
+												    <div id="app">
+												      ${renderToStringHTML}
+												    </div>
+												    <script src="./bundle.js"></script>
+												  </body>
+												</html>`;
 				res.status(200).send(html);
 
 	    } else {
